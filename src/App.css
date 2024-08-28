@@ -10,9 +10,17 @@
   text-align: center;
 }
 
-.header {
+/* .header {
   display: flex;
   justify-content: flex-end;
+  padding: 10px;
+  background-color: #f7f7f7;
+} */
+
+.header {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
   padding: 10px;
   background-color: #f7f7f7;
 }

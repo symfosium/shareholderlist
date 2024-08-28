@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import './App.css'
+import ShareholderForm from './components/ShareholderForm/ShareholderForm'
+import NewTransactionForm from './components/NewTransactionForm'
+import TransactionHistoryTable from './components/TransactionHistoryTable/TransactionHistoryTable'
 
 function App() {
 
@@ -7,6 +10,9 @@ function App() {
     <>
       <div className="App">
         <header className="header">
+        <div className="header-left">
+          <img src="path/to/your-logo.png" alt="Logo" className="logo" />
+        </div>
           <div className="header-right">
             <button className="btn-new-shareholder">Add new shareholder</button>
             <button className="btn-logout">Log out</button>
@@ -27,6 +33,9 @@ function App() {
           <button className="nav-btn">Owners</button>
           <button className="nav-btn">Transaction History</button>
         </div>
+  
+        <TransactionHistoryTable />
+        
 
         <h2>Shareholderlist</h2>
         <table className="shareholders-table">
