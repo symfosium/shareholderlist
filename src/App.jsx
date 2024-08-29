@@ -4,7 +4,7 @@ import SearchSection from './components/SearchSection/SearchSection'
 import NavButtons from './components/NavButtons/NavButtons'
 import ShareholderList from './components/ShareholderList/ShareholderList'
 import OwnerList from './components/OwnersList/OwnerList'
-import TransactionHistoryTable from './components/TransactionHistoryTable'
+import TransactionHistoryTable from './components/TransactionHistoryTable/TransactionHistoryTable'
 import Footer from './components/Footer/Footer'
 
 import './App.css'
