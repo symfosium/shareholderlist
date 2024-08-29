@@ -20,7 +20,7 @@ function App() {
     <>
       <div className="App">
         <Header activeTab={activeTab} onTabChange={handleTabChange} />
-        <SearchSection />
+        <SearchSection activeTab={activeTab} />
         <NavButtons />
         {activeTab === 'shareholders' && <ShareholderList />}
         {activeTab === 'owners' && <OwnerList />}

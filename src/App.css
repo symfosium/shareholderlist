@@ -55,9 +55,11 @@ h2 {
 .search-section {
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: #FFF6EF;
   margin: 20px 0;
   padding: 40px 20px;
+  min-height: 100px;  
 }
 
 .search-input {
