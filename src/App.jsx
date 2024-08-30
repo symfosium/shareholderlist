@@ -13,6 +13,7 @@ import './App.css'
 
 function App() {
   const [activeTab, setActiveTab] = useState('shareholders')
+  const [activeButton, setActiveButton] = useState('')
   const [showShareholderForm, setShareholderForm] = useState(false)
   const [showTransactionForm, setShowTransactionForm] = useState(false)
 
@@ -20,16 +21,19 @@ function App() {
     setActiveTab(tab)
     setShareholderForm(false)
     setShowTransactionForm(false)
+    setActiveButton('')
   }
 
   const handleShowShareholderForm = () => {
     setShareholderForm(true)
     setShowTransactionForm(false)
+    setActiveButton('shareholder')
   }
 
   const handleShowTransactionForm = () => {
     setShowTransactionForm(true)
     setShareholderForm(false)
+    setActiveButton('transaction')
   }
 
   return (
@@ -40,6 +44,7 @@ function App() {
         <NavButtons
           onAddShareholderClick={handleShowShareholderForm}
           onAddTransactionClick={handleShowTransactionForm}
+          activeButton={activeButton}
         />
         {showShareholderForm ? (
           <ShareholderForm />

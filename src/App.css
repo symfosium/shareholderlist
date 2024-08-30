@@ -85,16 +85,17 @@ h2 {
 
 .nav-btn {
   padding: 10px 20px;
-  border: 1px solid #f4a261;
-  background-color: white;
-  color:#f4a261;
+  border: none;
   cursor: pointer;
+  border-radius: 5px;
+  background-color: #6d6d6d;
+  transition: background-color 0.3s ease;
   font-size: 18px;
 }
 
-.nav-btn:hover {
-  background-color: #f4a261;
-  color: white;
+.nav-btn.active {
+  background-color: #d07b43;
+  color: #fff;
 }
 
 .shareholders-table {
