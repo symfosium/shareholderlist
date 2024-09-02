@@ -28,12 +28,14 @@ function App() {
   const handleShowShareholderForm = () => {
     setShareholderForm(true)
     setShowTransactionForm(false)
+    setActiveTab('')
     setActiveButton('shareholder')
   }
 
   const handleShowTransactionForm = () => {
     setShowTransactionForm(true)
     setShareholderForm(false)
+    setActiveTab('')
     setActiveButton('transaction')
   }
 
@@ -57,7 +59,7 @@ function App() {
           onAddShareholderClick={handleShowShareholderForm}
           onAddTransactionClick={handleShowTransactionForm}
         />
-        <SearchSection activeTab={activeTab} />
+        <SearchSection activeTab={activeTab} isMobile={isMobile} />
         {!isMobile && (
           <NavButtons
             onAddShareholderClick={handleShowShareholderForm}
@@ -76,7 +78,8 @@ function App() {
             {activeTab === 'transactions' && <TransactionHistoryTable />}
           </>
         )}
-        <Footer />
+
+        <Footer isMobile={isMobile} />
       </div>
     </>
   )
