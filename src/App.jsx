@@ -16,6 +16,7 @@ function App() {
   const [activeButton, setActiveButton] = useState('')
   const [showShareholderForm, setShareholderForm] = useState(false)
   const [showTransactionForm, setShowTransactionForm] = useState(false)
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
 
   const handleTabChange = (tab) => {
     setActiveTab(tab)
@@ -36,16 +37,34 @@ function App() {
     setActiveButton('transaction')
   }
 
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 768)
+  }
+
+  useState(() => {
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
   return (
     <>
       <div className="App">
-        <Header activeTab={activeTab} onTabChange={handleTabChange} />
-        <SearchSection activeTab={activeTab} />
-        <NavButtons
+        <Header
+          activeTab={activeTab}
+          onTabChange={handleTabChange}
           onAddShareholderClick={handleShowShareholderForm}
           onAddTransactionClick={handleShowTransactionForm}
-          activeButton={activeButton}
         />
+        <SearchSection activeTab={activeTab} />
+        {!isMobile && (
+          <NavButtons
+            onAddShareholderClick={handleShowShareholderForm}
+            onAddTransactionClick={handleShowTransactionForm}
+            activeButton={activeButton}
+          />
+        )}
         {showShareholderForm ? (
           <ShareholderForm />
         ) : showTransactionForm ? (

@@ -7,14 +7,16 @@ function NavButtons({
 }) {
   return (
     <div className="nav-buttons">
-      <button 
+      <button
         className={`nav-btn ${activeButton === 'shareholder' ? 'active' : ''}`}
-        onClick={onAddShareholderClick}>
+        onClick={onAddShareholderClick}
+      >
         Add new shareholder
       </button>
-      <button 
+      <button
         className={`nav-btn ${activeButton === 'transaction' ? 'active' : ''}`}
-        onClick={onAddTransactionClick}>
+        onClick={onAddTransactionClick}
+      >
         Add new transaction
       </button>
     </div>
