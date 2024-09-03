@@ -35,9 +35,9 @@ h2 {
   background: none;
   border: none;
   cursor: pointer;
-  background: #5d5d5d;
   outline: none; 
   transition: transform 0.3s ease;
+  color: #f4a261;
 }
 
 
@@ -181,6 +181,7 @@ h2 {
   background-color: #6d6d6d;
   transition: background-color 0.3s ease;
   font-size: 18px;
+  color: #fff;
 }
 
 .nav-btn.active {
