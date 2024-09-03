@@ -65,11 +65,6 @@ const BurgerMenu = ({
                   Add new transaction
                 </a>
               </li>
-              <li>
-                <a href="#" onClick={toggleMenu}>
-                  Logout
-                </a>
-              </li>
             </ul>
           </nav>
         </div>

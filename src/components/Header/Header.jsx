@@ -55,7 +55,6 @@ function Header({
             >
               Transaction History
             </button>
-            <button className="btn-logout">Log out</button>
           </nav>
         )}
       </div>
