@@ -41,13 +41,13 @@ label {
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    background-color: #FFF6EF;
+    background-color: #ffffff;
 }
 
 .submitButton {
     padding: 10px 15px;
     font-size: 16px;
-    background-color: #F09451;
+    background-color: #00005e;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -58,7 +58,7 @@ label {
 }
 
 .submitButton:hover {
-    background-color: #b3641b;
+    background-color:  #245bdc;
 }
 
 /* Mobile */

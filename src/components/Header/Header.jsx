@@ -25,7 +25,7 @@ function Header({
   return (
     <header className="header">
       <a href="/">
-        <img src="/icons/phz logo 2.svg" alt="logo" />
+        <img src="/icons/Sami.png" alt="logo" />
       </a>
       <div className="header-right">
         {/* Showing burger  */}
@@ -55,7 +55,6 @@ function Header({
             >
               Transaction History
             </button>
-            <button className="btn-logout">Log out</button>
           </nav>
         )}
       </div>
