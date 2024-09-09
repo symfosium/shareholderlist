@@ -1,14 +1,17 @@
 import React from 'react'
+import { Tr, Td } from 'react-super-responsive-table'
 
 function TableRowShareholders({ name, ssn, email, address }) {
-  console.log({ name, ssn, email, address })
   return (
-    <tr>
-      <td>{name}</td>
-      <td>{ssn}</td>
-      <td>{email}</td>
-      <td>{address}</td>
-    </tr>
+    <Tr>
+      <Td>{name}</Td>
+      <Td>{ssn}</Td>
+      <Td>{email}</Td>
+      <Td>{address}</Td>
+      <Td>
+        <button>Edit</button>
+      </Td>
+    </Tr>
   )
 }
 

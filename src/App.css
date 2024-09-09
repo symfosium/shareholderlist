@@ -37,7 +37,7 @@ h2 {
   color: #00005e;
   outline: none; 
   transition: transform 0.3s ease;
-  color: #f4a261;
+  color: #00005e;
 }
 
 
@@ -102,7 +102,45 @@ h2 {
     align-items: center; 
     gap: 10px; 
   } 
+
+  .shareholders-table {
+    display: block;
+    color: #000;
+  }
+  
+  .shareholders-table thead {
+    display: none;
+  }
+
+  .shareholders-table tbody {
+    display: block;
+  }
+
+  .shareholders-table tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    background-color: #c3dff3; /* Пример цвета фона карточки */
+  }
+
+  .shareholders-table td {
+    display: block;
+    text-align: right;
+    padding: 0.5rem 1rem;
+    position: relative;
+  }
+
+  .shareholders-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    text-align: left;
+    font-weight: bold;
+  }
+
 }
+
 
 
 /* Desktop */
@@ -110,8 +148,6 @@ h2 {
   display: flex;
   justify-content: space-between; 
   align-items: center; 
-  /* padding: 10px;
-  background-color: #f7f7f7; */
 }
 
 .header img {
@@ -185,7 +221,6 @@ h2 {
   border: none;
   cursor: pointer;
   border-radius: 5px;
-  /* background-color: #6d6d6d; */
   transition: background-color 0.3s ease;
   font-size: 18px;
   color: #00005e;
@@ -214,6 +249,16 @@ h2 {
 .shareholders-table th, .shareholders-table td {
   border: 1px solid #332f2f;
   padding: 10px;
+}
+
+.pivoted button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  font-size: 18px;
+  color: #fff;
 }
 
 .icons {

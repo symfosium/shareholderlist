@@ -1,21 +1,23 @@
 import React from 'react'
 import TableRowShareholders from './TableRowShareholders'
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table'
+import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css'
 
 function ShareholderList() {
   return (
     <div>
       <h2>Shareholder List</h2>
-      <table className="shareholders-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Social security number</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
+      <Table className="shareholders-table">
+        <Thead>
+          <Tr>
+            <Th>Name</Th>
+            <Th>SSN</Th>
+            <Th>Email</Th>
+            <Th>Address</Th>
+            <Th>Action</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
           <TableRowShareholders
             name="John Doe"
             ssn="123-45-6789"
@@ -28,8 +30,8 @@ function ShareholderList() {
             email="jane@example.com"
             address="456 Oak Ave"
           />
-        </tbody>
-      </table>
+        </Tbody>
+      </Table>
     </div>
   )
 }
