@@ -1,9 +1,9 @@
-#root {
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-}
+} */
 
 .App {
   font-family: Arial, sans-serif;
@@ -35,7 +35,7 @@ h2 {
   background: none;
   border: none;
   cursor: pointer;
-  color: #f4a261;
+  color: #00005e;
   outline: none; 
   transition: transform 0.3s ease;
 }
@@ -75,7 +75,7 @@ h2 {
 }
 
 .burger-menu-content nav ul li a:hover {
-  background-color: #f4a261; 
+  background-color: #00005e; 
 }
 
 @media (max-width: 768px) {
@@ -110,8 +110,13 @@ h2 {
   display: flex;
   justify-content: space-between; 
   align-items: center; 
-  padding: 10px;
-  background-color: #f7f7f7;
+  /* padding: 10px;
+  background-color: #f7f7f7; */
+}
+
+.header img {
+  height: 70px;
+  width: 90px;
 }
 
 .header-right nav {
@@ -123,8 +128,8 @@ h2 {
 .button-group button {
   flex: 1;
   padding: 10px 20px; 
-  background-color: #6d6d6d;
-  color: #fff;
+  /* background-color: #6d6d6d; */
+  color: #00005E;
   border: none;
   margin: 0 5px;
   text-align: center;
@@ -135,7 +140,7 @@ h2 {
 }
 
 .button-group button.active-tab {
-  background-color: #d07b43;
+  background-color: #00005e;
   color: white;
 }
 
@@ -143,7 +148,7 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #FFF6EF;
+  background-color: #36B6FF;
   margin: 20px 0;
   padding: 40px 20px;
   min-height: 100px;  
@@ -162,7 +167,7 @@ h2 {
 .search-button {
   max-width: 300px;
   padding: 10px;
-  background-color: #f4a261;
+  background-color: #00005e;
   border: none;
   cursor: pointer;
   box-sizing: border-box;
@@ -180,14 +185,14 @@ h2 {
   border: none;
   cursor: pointer;
   border-radius: 5px;
-  background-color: #6d6d6d;
+  /* background-color: #6d6d6d; */
   transition: background-color 0.3s ease;
   font-size: 18px;
-  color: white;
+  color: #00005e;
 }
 
 .nav-btn.active {
-  background-color: #d07b43;
+  background-color: #00005e;
   color: #fff;
 }
 
@@ -198,7 +203,7 @@ h2 {
 }
 
 .shareholders-table thead th {
-  background-color: #f4a261; 
+  background-color: #00005e; 
   color: white; 
   font-weight: bold; 
   font-size: 16px; 
@@ -240,6 +245,11 @@ h2 {
   font-size: 18px;
 }
 
+.logo img {
+  height: 120px;
+  width: 150px;
+}
+
 .footer-bottom {
   margin-top: 20px;
   font-size: 12px;
@@ -247,7 +257,7 @@ h2 {
 }
 
 .footer-bottom .link {
-  color:#f67308;
+  color:#00005e;
 }
 
 

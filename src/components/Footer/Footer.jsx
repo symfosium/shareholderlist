@@ -28,27 +28,27 @@ function Footer({ isMobile }) {
       {!isMobile && (
         <div className="contact-info">
           <div className="logo">
-            <img src="/icons/big_logo.svg" alt="logo" />
+            <img src="/icons/Sami.png" alt="logo" />
           </div>
           <div className="location">
             <p>HELSINKI</p>
-            <p>PHZ Full Stack Oy</p>
-            <p>PL 527, 00101 Helsinki</p>
+            <p>Sami Oy</p>
+            <p>PL 654, 00210 Helsinki</p>
           </div>
           <div className="location">
-            <p>Forum Toimisto</p>
-            <p>Yrjönkatu 23 B, 00100 Helsinki</p>
+            <p>Espoo</p>
+            <p>Yrjönkatu 1 A, 002000 Helsinki</p>
           </div>
           <div className="location">
-            <p>TALLINNA</p>
-            <p>Pärnu Mnt 130, 10141 Tallinn</p>
+            <p>Vantaa</p>
+            <p>Pärnu Mnt 3, 000010 Tallinn</p>
           </div>
         </div>
       )}
 
       <div className="footer-bottom">
-        <p>© 2022 PHZ Full Stack Oy. All Rights Reserved.</p>
-        <p className="footer-bottom link">Login with PHZ</p>
+        <p>© 2022 Sami Oy. All Rights Reserved.</p>
+        <p className="footer-bottom link">Login with Sami</p>
       </div>
     </footer>
   )

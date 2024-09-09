@@ -12,6 +12,7 @@ function ShareholderList() {
             <th>Social security number</th>
             <th>Email</th>
             <th>Address</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
