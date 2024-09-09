@@ -1,0 +1,62 @@
+[
+  {
+    "name": "John Doe",
+    "social_security_number": "***-**-6654",
+    "email": "john.doe@mockmail.com",
+    "address": "1976 Oak Ave, Fairview, NY, USA"
+  },
+  {
+    "name": "Jane Smith",
+    "social_security_number": "***-**-1492",
+    "email": "jane.smith@mockmail.com",
+    "address": "4750 Birch Ln, Georgetown, CA, USA"
+  },
+  {
+    "name": "Alice Johnson",
+    "social_security_number": "***-**-1918",
+    "email": "alice.johnson@fakedomain.com",
+    "address": "3937 Cedar Dr, Riverton, TX, USA"
+  },
+  {
+    "name": "Robert Brown",
+    "social_security_number": "***-**-2310",
+    "email": "robert.brown@example.com",
+    "address": "7372 Maple St, Georgetown, NY, USA"
+  },
+  {
+    "name": "Michael Davis",
+    "social_security_number": "***-**-6643",
+    "email": "michael.davis@mockmail.com",
+    "address": "6616 Cedar Dr, Springfield, TX, USA"
+  },
+  {
+    "name": "Sarah Wilson",
+    "social_security_number": "***-**-8450",
+    "email": "sarah.wilson@mockmail.com",
+    "address": "1585 Birch Ln, Riverton, CA, USA"
+  },
+  {
+    "name": "David Anderson",
+    "social_security_number": "***-**-2180",
+    "email": "david.anderson@fakedomain.com",
+    "address": "3491 Pine Blvd, Springfield, NY, USA"
+  },
+  {
+    "name": "Laura Thomas",
+    "social_security_number": "***-**-4921",
+    "email": "laura.thomas@example.com",
+    "address": "6954 Cedar Dr, Fairview, IL, USA"
+  },
+  {
+    "name": "James White",
+    "social_security_number": "***-**-8222",
+    "email": "james.white@fakedomain.com",
+    "address": "6135 Pine Blvd, Riverton, IL, USA"
+  },
+  {
+    "name": "Emily Harris",
+    "social_security_number": "***-**-3453",
+    "email": "emily.harris@mockmail.com",
+    "address": "5351 Birch Ln, Springfield, IL, USA"
+  }
+]
