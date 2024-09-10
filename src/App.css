@@ -121,7 +121,7 @@ h2 {
     margin-bottom: 1rem;
     border: 1px solid #ddd;
     padding: 1rem;
-    background-color: #c3dff3; /* Пример цвета фона карточки */
+    background-color: #c3dff3;
   }
 
   .shareholders-table td {
@@ -129,19 +129,10 @@ h2 {
     text-align: right;
     padding: 0.5rem 1rem;
     position: relative;
-  }
-
-  .shareholders-table td::before {
-    content: attr(data-label);
-    position: absolute;
-    left: 0;
-    text-align: left;
-    font-weight: bold;
-  }
-
+    word-wrap: break-word;
+    box-sizing: border-box; 
 }
-
-
+} 
 
 /* Desktop */
 .header {
@@ -164,7 +155,6 @@ h2 {
 .button-group button {
   flex: 1;
   padding: 10px 20px; 
-  /* background-color: #6d6d6d; */
   color: #00005E;
   border: none;
   margin: 0 5px;
