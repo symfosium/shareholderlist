@@ -239,6 +239,7 @@ h2 {
 .shareholders-table th, .shareholders-table td {
   border: 1px solid #332f2f;
   padding: 10px;
+  color: #000;
 }
 
 .pivoted button {

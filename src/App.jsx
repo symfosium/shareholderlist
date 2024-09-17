@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import api from './services/api'
+
 import Header from './components/Header/Header'
 import SearchSection from './components/SearchSection/SearchSection'
 import NavButtons from './components/NavButtons/NavButtons'
@@ -17,6 +19,21 @@ function App() {
   const [showShareholderForm, setShareholderForm] = useState(false)
   const [showTransactionForm, setShowTransactionForm] = useState(false)
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
+  const [shareholders, setShareholders] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    api
+      .get('/shareholders.json')
+      .then((response) => {
+        setShareholders(response.data)
+        setLoading(false)
+      })
+      .catch((error) => {
+        console.error('Error loading shareholders data:', error)
+        setLoading(false)
+      })
+  }, [activeTab])
 
   const handleTabChange = (tab) => {
     setActiveTab(tab)
@@ -73,7 +90,9 @@ function App() {
           <NewTransactionForm />
         ) : (
           <>
-            {activeTab === 'shareholders' && <ShareholderList />}
+            {activeTab === 'shareholders' && (
+              <ShareholderList loading={loading} shareholders={shareholders} />
+            )}
             {activeTab === 'owners' && <OwnerList />}
             {activeTab === 'transactions' && <TransactionHistoryTable />}
           </>

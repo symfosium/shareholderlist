@@ -11,32 +11,41 @@ const TransactionHistoryTable = () => {
         <Thead>
           <Tr>
             <Th>Name</Th>
+            <Th>Purchase Date</Th>
             <Th>Seller</Th>
             <Th>Buyer</Th>
             <Th>Shares Qty</Th>
             <Th>Price</Th>
+            <Th>Tax Reported?</Th>
             <Th>From</Th>
             <Th>To</Th>
+            <Th>Note</Th>
           </Tr>
         </Thead>
         <Tbody>
           <TableRowTransaction
             name="israt"
+            dateOfPurchase="2.3.2024"
             seller="madhu"
             buyer="saima"
-            numbersOfShares="143"
+            shareQty="143"
             price="100000"
-            from="v"
-            to="a"
+            taxReported="yes"
+            shareNumberFrom="v"
+            shareNumberTo="a"
+            note="note1"
           />
           <TableRowTransaction
-            name="saku"
-            seller="anton"
-            buyer="anna"
-            numbersOfShares="86"
-            price="200000"
-            from="b"
-            to="c"
+            name="Anton"
+            dateOfPurchase="13.8.2022"
+            seller="saku"
+            buyer="saima"
+            shareQty="143"
+            price="100000"
+            taxReported="yes"
+            shareNumberFrom="v"
+            shareNumberTo="a"
+            note="note1"
           />
         </Tbody>
       </Table>
