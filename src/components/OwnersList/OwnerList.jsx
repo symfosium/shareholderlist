@@ -19,7 +19,7 @@ function OwnerList() {
         console.error('Error fetching owners', error)
         setLoading(false)
       })
-  })
+  }, [])
 
   if (loading) {
     return <div>Loading...</div>
