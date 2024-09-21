@@ -19,21 +19,6 @@ function App() {
   const [showShareholderForm, setShareholderForm] = useState(false)
   const [showTransactionForm, setShowTransactionForm] = useState(false)
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
-  const [shareholders, setShareholders] = useState([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    api
-      .get('/shareholders.json')
-      .then((response) => {
-        setShareholders(response.data)
-        setLoading(false)
-      })
-      .catch((error) => {
-        console.error('Error loading shareholders data:', error)
-        setLoading(false)
-      })
-  }, [activeTab])
 
   const handleTabChange = (tab) => {
     setActiveTab(tab)
@@ -90,9 +75,7 @@ function App() {
           <NewTransactionForm />
         ) : (
           <>
-            {activeTab === 'shareholders' && (
-              <ShareholderList loading={loading} shareholders={shareholders} />
-            )}
+            {activeTab === 'shareholders' && <ShareholderList />}
             {activeTab === 'owners' && <OwnerList />}
             {activeTab === 'transactions' && <TransactionHistoryTable />}
           </>
