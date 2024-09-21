@@ -1,18 +1,32 @@
 import React from 'react';
+import { Tr, Td } from 'react-super-responsive-table'
 
-const TableRowTransaction = ({name, seller, buyer, numbersOfShares, price, from, to}) => {
-    console.log ({name, seller, buyer, numbersOfShares, price, from, to})
-    return (
-        <tr>
-            <td>{name}</td>
-            <td>{seller}</td>
-            <td>{buyer}</td>
-            <td>{numbersOfShares}</td>
-            <td>{price}</td>
-            <td>{from}</td>
-            <td>{to}</td>
-        </tr>
-    );
-};
+const TableRowTransaction = ({
+  name,
+  dateOfPurchase,
+  seller,
+  buyer,
+  shareQty,
+  price,
+  taxReported,
+  shareNumberFrom,
+  shareNumberTo,
+  note,
+}) => {
+  return (
+    <Tr>
+      <Td data-label="Name">{name}</Td>
+      <Td data-label="Date of purchase">{dateOfPurchase}</Td>
+      <Td data-label="Seller">{seller}</Td>
+      <Td data-label="Buyer">{buyer}</Td>
+      <Td data-label="Number of shares">{shareQty}</Td>
+      <Td data-label="Price">{price}</Td>
+      <Td data-label="Tax">{taxReported}</Td>
+      <Td data-label="From">{shareNumberFrom}</Td>
+      <Td data-label="To">{shareNumberTo}</Td>
+      <Td data-label="Note">{note}</Td>
+    </Tr>
+  )
+}
 
 export default TableRowTransaction;

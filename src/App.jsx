@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import api from './services/api'
+
 import Header from './components/Header/Header'
 import SearchSection from './components/SearchSection/SearchSection'
 import NavButtons from './components/NavButtons/NavButtons'

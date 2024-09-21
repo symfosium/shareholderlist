@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "encryptedSsn": "***-**-6654",
+    "email": "john.doe@mockmail.com",
+    "address": "1976 Oak Ave, Fairview, NY, USA"
+  },
+  {
+    "id": 2,
+    "name": "Jane Smith",
+    "encryptedSsn": "***-**-1492",
+    "email": "jane.smith@mockmail.com",
+    "address": "4750 Birch Ln, Georgetown, CA, USA"
+  },
+  {
+    "id": 3,
+    "name": "Alice Johnson",
+    "encryptedSsn": "***-**-1918",
+    "email": "alice.johnson@fakedomain.com",
+    "address": "3937 Cedar Dr, Riverton, TX, USA"
+  },
+  {
+    "id": 4,
+    "name": "Robert Brown",
+    "encryptedSsn": "***-**-2310",
+    "email": "robert.brown@example.com",
+    "address": "7372 Maple St, Georgetown, NY, USA"
+  },
+  {
+    "id": 5,
+    "name": "Michael Davis",
+    "encryptedSsn": "***-**-6643",
+    "email": "michael.davis@mockmail.com",
+    "address": "6616 Cedar Dr, Springfield, TX, USA"
+  },
+  {
+    "id": 6,
+    "name": "Sarah Wilson",
+    "encryptedSsn": "***-**-8450",
+    "email": "sarah.wilson@mockmail.com",
+    "address": "1585 Birch Ln, Riverton, CA, USA"
+  },
+  {
+    "id": 7,
+    "name": "David Anderson",
+    "encryptedSsn": "***-**-2180",
+    "email": "david.anderson@fakedomain.com",
+    "address": "3491 Pine Blvd, Springfield, NY, USA"
+  },
+  {
+    "id": 8,
+    "name": "Laura Thomas",
+    "encryptedSsn": "***-**-4921",
+    "email": "laura.thomas@example.com",
+    "address": "6954 Cedar Dr, Fairview, IL, USA"
+  },
+  {
+    "id": 9,
+    "name": "James White",
+    "encryptedSsn": "***-**-8222",
+    "email": "james.white@fakedomain.com",
+    "address": "6135 Pine Blvd, Riverton, IL, USA"
+  },
+  {
+    "id": 10,
+    "name": "Emily Harris",
+    "encryptedSsn": "***-**-3453",
+    "email": "emily.harris@mockmail.com",
+    "address": "5351 Birch Ln, Springfield, IL, USA"
+  }
+]
