@@ -32,6 +32,7 @@ function OwnerList() {
           <Tr>
             <Th>Name</Th>
             <Th>Shares Qty</Th>
+            <Th>Share percentage</Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -41,6 +42,7 @@ function OwnerList() {
                 key={owner.id}
                 name={owner.name}
                 numberOfShares={owner.numberOfShares}
+                sharePercentage={owner.sharePercentage}
               />
             ))
           ) : (

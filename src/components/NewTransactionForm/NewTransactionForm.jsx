@@ -6,12 +6,13 @@ const NewTransactionForm = () => {
   const [formData, setFormData] = useState({
     buyer: '',
     seller: '',
-    date: '',
+    dateOfPurchase: '',
+    shareQty: '',
     price: '',
-    shares: '',
     taxReported: true,
-    shareFrom: '',
-    shareTo: '',
+    shareNumberFrom: '',
+    shareNumberTo: '',
+    note: '',
   })
 
   const handleInputChange = (e) => {
@@ -49,12 +50,13 @@ const NewTransactionForm = () => {
         setFormData({
           buyer: '',
           seller: '',
-          date: '',
+          dateOfPurchase: '',
+          shareQty: '',
           price: '',
-          shares: '',
           taxReported: true,
-          shareFrom: '',
-          shareTo: '',
+          shareNumberFrom: '',
+          shareNumberTo: '',
+          note: '',
         })
       })
       .catch((e) => {
@@ -97,22 +99,22 @@ const NewTransactionForm = () => {
           />
         </div>
         <div className={styles.formGroup}>
+          <label>Shares Qty:</label>
+          <input
+            type="number"
+            name="shares"
+            className={styles.inputField}
+            value={formData.shares}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className={styles.formGroup}>
           <label>Price:</label>
           <input
             type="number"
             name="price"
             className={styles.inputField}
             value={formData.price}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <label>Number of Shares:</label>
-          <input
-            type="number"
-            name="shares"
-            className={styles.inputField}
-            value={formData.shares}
             onChange={handleInputChange}
           />
         </div>
@@ -148,6 +150,16 @@ const NewTransactionForm = () => {
               onChange={handleInputChange}
             />
           </div>
+        </div>
+        <div className={styles.formGroup}>
+          <label>Note:</label>
+          <textarea
+            name="note"
+            className={styles.textareaField}  
+            value={formData.note}  
+            onChange={handleInputChange}
+            rows={5}  
+          />
         </div>
         <button type="submit" className={styles.submitButton}>
           Add new transaction

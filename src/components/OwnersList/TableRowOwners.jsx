@@ -6,6 +6,7 @@ function TableRowOwners({ name, numberOfShares }) {
     <Tr>
       <Td data-label="Name">{name}</Td>
       <Td data-label="Number of Shares">{numberOfShares}</Td>
+      <Td data-lebel="Share Percentage">{sharePercentage}</Td>
     </Tr>
   )
 }

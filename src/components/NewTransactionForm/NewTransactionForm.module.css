@@ -35,7 +35,7 @@ label {
     width: 150px;
 }
 
-.inputField {
+.inputField, .textareaField {
     flex: 1;
     padding: 10px;
     font-size: 16px;

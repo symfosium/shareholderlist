@@ -2,10 +2,9 @@ import React from 'react';
 import { Tr, Td } from 'react-super-responsive-table'
 
 const TableRowTransaction = ({
-  name,
-  dateOfPurchase,
   seller,
   buyer,
+  dateOfPurchase,
   shareQty,
   price,
   taxReported,
@@ -15,10 +14,9 @@ const TableRowTransaction = ({
 }) => {
   return (
     <Tr>
-      <Td data-label="Name">{name}</Td>
-      <Td data-label="Date of purchase">{dateOfPurchase}</Td>
       <Td data-label="Seller">{seller}</Td>
       <Td data-label="Buyer">{buyer}</Td>
+      <Td data-label="Date of purchase">{dateOfPurchase}</Td>
       <Td data-label="Number of shares">{shareQty}</Td>
       <Td data-label="Price">{price}</Td>
       <Td data-label="Tax">{taxReported}</Td>

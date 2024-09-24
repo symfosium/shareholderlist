@@ -37,10 +37,9 @@ const TransactionHistoryTable = () => {
       <Table className="shareholders-table">
         <Thead>
           <Tr>
-            <Th>Name</Th>
-            <Th>Purchase Date</Th>
             <Th>Seller</Th>
             <Th>Buyer</Th>
+            <Th>Purchase Date</Th>
             <Th>Shares Qty</Th>
             <Th>Price</Th>
             <Th>Tax Reported?</Th>
@@ -54,10 +53,9 @@ const TransactionHistoryTable = () => {
             transactions.map((transaction) => (
               <TableRowTransaction
                 key={transaction.id}
-                name={transaction.name}
-                dateOfPurchase={transaction.dateOfPurchase}
                 seller={transaction.seller}
                 buyer={transaction.buyer}
+                dateOfPurchase={transaction.dateOfPurchase}
                 shareQty={transaction.shareQty}
                 price={transaction.price}
                 taxReported={transaction.taxReported ? 'yes' : 'no'}
