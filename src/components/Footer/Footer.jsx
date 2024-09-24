@@ -30,19 +30,7 @@ function Footer({ isMobile }) {
           <div className="logo">
             <img src="/icons/Sami.png" alt="logo" />
           </div>
-          <div className="location">
-            <p>HELSINKI</p>
-            <p>Sami Oy</p>
-            <p>PL 654, 00210 Helsinki</p>
-          </div>
-          <div className="location">
-            <p>Espoo</p>
-            <p>Yrjönkatu 1 A, 002000 Helsinki</p>
-          </div>
-          <div className="location">
-            <p>Vantaa</p>
-            <p>Pärnu Mnt 3, 000010 Tallinn</p>
-          </div>
+          <div className="location"></div>
         </div>
       )}
 

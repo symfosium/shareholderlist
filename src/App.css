@@ -354,7 +354,8 @@ h2 {
 
 .footer .contact-info {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
   color: #000;
   font-size: 18px;
 }
