@@ -16,7 +16,7 @@ function EditShareholderModal({ shareholder, onClose, onSave }) {
     onClose()
 
     api
-      .put(`/shareholder/update/${shareholder.id}`, updatedShareholder)
+      .put(`/shareholder/upda te/${shareholder.id}`, updatedShareholder)
       .then((response) => {
         console.log('Shareholder updated successfully:', response.data)
         toast.success('Shareholder updated successfully!', {

@@ -23,13 +23,8 @@ function Footer({ isMobile }) {
           </span>
         </div>
       </div>
-
-      {/* Условное отображение контактной информации */}
       {!isMobile && (
         <div className="contact-info">
-          <div className="logo">
-            <img src="/icons/Sami.png" alt="logo" />
-          </div>
           <div className="location"></div>
         </div>
       )}
