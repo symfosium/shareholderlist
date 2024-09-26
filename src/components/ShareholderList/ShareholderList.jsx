@@ -35,7 +35,14 @@ function ShareholderList() {
   }
 
   const handleSaveShareholder = (updatedShareholder) => {
-    console.log('Updated Shareholder', updatedShareholder)
+    setShareholders((prevShareholders) =>
+      prevShareholders.map((shareholder) =>
+        shareholder.id === updatedShareholder.id
+          ? updatedShareholder
+          : shareholder
+      )
+    )
+    console.log('Updated Shareholder:', updatedShareholder)
   }
 
   if (loading) {

@@ -1,25 +1,38 @@
 import React, { useState } from 'react'
 import api from '../../services/api'
 
+import { toast } from 'react-toastify'
+
 function EditShareholderModal({ shareholder, onClose, onSave }) {
   const [name, setName] = useState(shareholder.name)
   const [email, setEmail] = useState(shareholder.email)
   const [address, setAddress] = useState(shareholder.address)
 
-  const handleSave = async () => {
+  const handleSave = () => {
     console.log('Saving shareholder with ID:', shareholder.id)
-    const updatedShareholder = { ...shareholder, name, email, address }
 
-    try {
-      const response = await api.put(
-        `/shareholders/${shareholder.id}`,
-        updatedShareholder
-      )
-      onSave(response.data)
-      onClose()
-    } catch (error) {
-      console.error('Shareholder update error', error)
-    }
+    const updatedShareholder = { ...shareholder, name, email, address }
+    onSave(updatedShareholder)
+    onClose()
+
+    api
+      .put(`/shareholder/update/${shareholder.id}`, updatedShareholder)
+      .then((response) => {
+        console.log('Shareholder updated successfully:', response.data)
+        toast.success('Shareholder updated successfully!', {
+          theme: 'dark',
+          position: 'bottom-right',
+          autoClose: 4000,
+        })
+      })
+      .catch((error) => {
+        console.error('Error updating shareholder', error)
+        toast.error('Error updating shareholder!', {
+          theme: 'dark',
+          position: 'bottom-right',
+          autoClose: 4000,
+        })
+      })
   }
 
   return (

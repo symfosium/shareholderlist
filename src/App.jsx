@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import api from './services/api'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 import Header from './components/Header/Header'
 import SearchSection from './components/SearchSection/SearchSection'
@@ -80,7 +82,7 @@ function App() {
             {activeTab === 'transactions' && <TransactionHistoryTable />}
           </>
         )}
-
+        <ToastContainer />
         <Footer isMobile={isMobile} />
       </div>
     </>

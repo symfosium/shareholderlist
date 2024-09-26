@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styles from './ShareholderForm.module.css'
 import api from '../../services/api'
+import { toast } from 'react-toastify'
 
 const ShareholderForm = () => {
   const [formData, setFormData] = useState({
@@ -23,6 +24,11 @@ const ShareholderForm = () => {
       .post('/shareholder/add', formData)
       .then((response) => {
         console.log('Shareholder added: ', response.data)
+        toast.success('Shareholder added successfully!', {
+          theme: 'dark',
+          position: 'bottom-right',
+          autoClose: 4000,
+        })
         setFormData({
           name: '',
           encryptedSsn: '',
@@ -33,6 +39,11 @@ const ShareholderForm = () => {
       })
       .catch((e) => {
         console.error('Error adding shareholder', e)
+        toast.error('Error adding shareholder!', {
+          theme: 'dark',
+          position: 'bottom-right',
+          autoClose: 4000,
+        })
       })
   }
 

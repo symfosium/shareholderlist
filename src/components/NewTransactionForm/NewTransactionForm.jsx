@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styles from './NewTransactionForm.module.css'
 import api from '../../services/api'
+import { toast } from 'react-toastify'
 
 const NewTransactionForm = () => {
   const [formData, setFormData] = useState({
@@ -47,6 +48,11 @@ const NewTransactionForm = () => {
       .post('/transactionHistory/add', payload)
       .then((response) => {
         console.log('Transaction added: ', response.data)
+        toast.success('Transaction added successfully!', {
+          theme: 'dark',
+          position: 'bottom-right',
+          autoClose: 4000,
+        })
         setFormData({
           buyer: '',
           seller: '',
@@ -61,6 +67,11 @@ const NewTransactionForm = () => {
       })
       .catch((e) => {
         console.error('Error adding transaction', e)
+        toast.error('Error adding transaction!', {
+          theme: 'dark',
+          position: 'bottom-right',
+          autoClose: 4000,
+        })
       })
   }
 
