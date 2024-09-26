@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { Tr, Td } from 'react-super-responsive-table'
 
 const TableRowTransaction = ({
@@ -27,4 +27,4 @@ const TableRowTransaction = ({
   )
 }
 
-export default TableRowTransaction;
+export default TableRowTransaction

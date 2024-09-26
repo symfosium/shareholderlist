@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import TableRowOwners from './TableRowOwners'
-import { Table, Thead, Tbody, Tr, Th } from 'react-super-responsive-table'
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table'
 import api from '../../services/api'
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css'
 
@@ -47,7 +47,7 @@ function OwnerList() {
             ))
           ) : (
             <Tr>
-              <Td colSpan="2">No Owners</Td>
+              <Td colSpan="1">No Owners</Td>
             </Tr>
           )}
         </Tbody>

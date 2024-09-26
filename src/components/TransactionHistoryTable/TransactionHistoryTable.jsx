@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import TableRowTransaction from './TableRowTransaction'
-import { Table, Thead, Tbody, Tr, Th } from 'react-super-responsive-table'
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table'
 import api from '../../services/api'
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css'
 
@@ -66,7 +66,7 @@ const TransactionHistoryTable = () => {
             ))
           ) : (
             <Tr>
-              <Td colspan="10">No transaction available</Td>
+              <Td colSpan="10">No transaction available</Td>
             </Tr>
           )}
         </Tbody>

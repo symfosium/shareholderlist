@@ -37,14 +37,14 @@ const NewTransactionForm = () => {
     const payload = {
       ...formData,
       taxReported: formData.taxReported,
-      dateOfPurchase: formData.date,
-      shareQty: formData.shares,
-      shareNumberFrom: formData.shareFrom,
-      shareNumberTo: formData.shareTo,
+      dateOfPurchase: formData.dateOfPurchase,
+      shareQty: formData.shareQty,
+      shareNumberFrom: formData.shareNumberFrom,
+      shareNumberTo: formData.shareNumberTo,
     }
 
     api
-      .post('/transactionHistory/add', formData)
+      .post('/transactionHistory/add', payload)
       .then((response) => {
         console.log('Transaction added: ', response.data)
         setFormData({
@@ -92,9 +92,9 @@ const NewTransactionForm = () => {
           <label>Date of Purchase:</label>
           <input
             type="date"
-            name="date"
+            name="dateOfPurchase"
             className={styles.inputField}
-            value={formData.date}
+            value={formData.dateOfPurchase}
             onChange={handleInputChange}
           />
         </div>
@@ -102,9 +102,9 @@ const NewTransactionForm = () => {
           <label>Shares Qty:</label>
           <input
             type="number"
-            name="shares"
+            name="shareQty"
             className={styles.inputField}
-            value={formData.shares}
+            value={formData.shareQty}
             onChange={handleInputChange}
           />
         </div>
@@ -135,18 +135,18 @@ const NewTransactionForm = () => {
           <div className={styles.shareRange}>
             <input
               type="text"
-              name="shareFrom"
+              name="shareNumberFrom"
               placeholder="From"
               className={styles.inputField}
-              value={formData.shareFrom}
+              value={formData.shareNumberFrom}
               onChange={handleInputChange}
             />
             <input
               type="text"
-              name="shareTo"
+              name="shareNumberTo"
               placeholder="To"
               className={styles.inputField}
-              value={formData.shareTo}
+              value={formData.shareNumberTo}
               onChange={handleInputChange}
             />
           </div>
@@ -155,10 +155,10 @@ const NewTransactionForm = () => {
           <label>Note:</label>
           <textarea
             name="note"
-            className={styles.textareaField}  
-            value={formData.note}  
+            className={styles.textareaField}
+            value={formData.note}
             onChange={handleInputChange}
-            rows={5}  
+            rows={5}
           />
         </div>
         <button type="submit" className={styles.submitButton}>
