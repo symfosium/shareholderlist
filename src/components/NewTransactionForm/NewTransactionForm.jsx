@@ -35,6 +35,65 @@ const NewTransactionForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
+    // Check for empty fields
+    if (!formData.buyer) {
+      toast.error('Buyer field is required!', {
+        theme: 'dark',
+        position: 'bottom-right',
+        autoClose: 4000,
+      })
+      return
+    }
+    if (!formData.seller) {
+      toast.error('Seller field is required!', {
+        theme: 'dark',
+        position: 'bottom-right',
+        autoClose: 4000,
+      })
+      return
+    }
+    if (!formData.dateOfPurchase) {
+      toast.error('Date of purchase is required!', {
+        theme: 'dark',
+        position: 'bottom-right',
+        autoClose: 4000,
+      })
+      return
+    }
+    if (!formData.shareQty) {
+      toast.error('Shares quantity is required!', {
+        theme: 'dark',
+        position: 'bottom-right',
+        autoClose: 4000,
+      })
+      return
+    }
+    if (!formData.price) {
+      toast.error('Price is required!', {
+        theme: 'dark',
+        position: 'bottom-right',
+        autoClose: 4000,
+      })
+      return
+    }
+    if (!formData.shareNumberFrom) {
+      toast.error('Share number from is required!', {
+        theme: 'dark',
+        position: 'bottom-right',
+        autoClose: 4000,
+      })
+      return
+    }
+    if (!formData.shareNumberTo) {
+      toast.error('Share number to is required!', {
+        theme: 'dark',
+        position: 'bottom-right',
+        autoClose: 4000,
+      })
+      return
+    }
+
+    // Proceed with the API call if all validations pass
     const payload = {
       ...formData,
       taxReported: formData.taxReported,

@@ -17,8 +17,66 @@ const ShareholderForm = () => {
     setFormData({ ...formData, [name]: value })
   }
 
+  // Helper function to validate email
+  const validateEmail = (email) => {
+    const emailRegex = /\S+@\S+\.\S+/
+    return emailRegex.test(email)
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    // Check for empty fields
+    if (!formData.name) {
+      toast.error('Name field is required!', {
+        theme: 'dark',
+        position: 'bottom-right',
+        autoClose: 4000,
+      })
+      return
+    }
+    if (!formData.encryptedSsn) {
+      toast.error('Social security number field is required!', {
+        theme: 'dark',
+        position: 'bottom-right',
+        autoClose: 4000,
+      })
+      return
+    }
+    if (!formData.email) {
+      toast.error('Email field is required!', {
+        theme: 'dark',
+        position: 'bottom-right',
+        autoClose: 4000,
+      })
+      return
+    }
+    if (!validateEmail(formData.email)) {
+      toast.error('Invalid email address!', {
+        theme: 'dark',
+        position: 'bottom-right',
+        autoClose: 4000,
+      })
+      return
+    }
+    if (!formData.address) {
+      toast.error('Address field is required!', {
+        theme: 'dark',
+        position: 'bottom-right',
+        autoClose: 4000,
+      })
+      return
+    }
+    if (!formData.shares) {
+      toast.error('Number of shares field is required!', {
+        theme: 'dark',
+        position: 'bottom-right',
+        autoClose: 4000,
+      })
+      return
+    }
+
+    // Proceed if all validations pass
     console.log(formData)
     api
       .post('/shareholder/add', formData)
@@ -74,7 +132,7 @@ const ShareholderForm = () => {
         <div className={styles.formGroup}>
           <label>Email:</label>
           <input
-            type="email"
+            type="text" // Changed from type="email" to type="text"
             name="email"
             className={styles.inputField}
             value={formData.email}
