@@ -2,6 +2,7 @@ import React from 'react'
 import './SearchSection.css'
 
 function SearchSection({ searchQuery, onSearchChange, onClearSearch }) {
+
   return (
     <div className="search-section">
       <div className="input-container">

@@ -4,7 +4,7 @@ import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table'
 import api from '../../services/api'
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css'
 
-function OwnerList({ searchQuery }) {
+function OwnerList({ searchQuery = '' }) {
   const [owners, setOwners] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -16,7 +16,7 @@ function OwnerList({ searchQuery }) {
         setLoading(false)
       })
       .catch((e) => {
-        console.error('Error fetching owners', error)
+        console.error('Error fetching owners', e)
         setLoading(false)
       })
   }, [])
@@ -28,6 +28,7 @@ function OwnerList({ searchQuery }) {
   if (loading) {
     return <div>Loading...</div>
   }
+
   return (
     <div>
       <h2>Owners List</h2>
@@ -40,8 +41,8 @@ function OwnerList({ searchQuery }) {
           </Tr>
         </Thead>
         <Tbody>
-          {owners.length > 0 ? (
-            owners.map((owner) => (
+          {filteredOwners.length > 0 ? (
+            filteredOwners.map((owner) => (
               <TableRowOwners
                 key={owner.id}
                 name={owner.name}
@@ -51,7 +52,7 @@ function OwnerList({ searchQuery }) {
             ))
           ) : (
             <Tr>
-              <Td colSpan="1">No Owners</Td>
+              <Td colSpan="3">No Owners</Td>
             </Tr>
           )}
         </Tbody>
