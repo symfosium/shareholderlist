@@ -1,33 +1,23 @@
 import React from 'react'
 import './SearchSection.css'
 
-function SearchSection({
-  activeTab,
-  isMobile,
-  searchQuery,
-  onSearchChange,
-  onClearSearch,
-}) {
+function SearchSection({ searchQuery, onSearchChange, onClearSearch }) {
   return (
-    <div
-      className={`search-section ${isMobile ? 'search-section-mobile' : ''}`}
-    >
-      {activeTab !== 'owners' && (
-        <div className="input-container">
-          <input
-            type="text"
-            placeholder="Search shareholders by name"
-            className="search-input"
-            value={searchQuery}
-            onChange={onSearchChange}
-          />
-          {searchQuery && (
-            <button className="clear-button" onClick={onClearSearch}>
-              Clear
-            </button>
-          )}
-        </div>
-      )}
+    <div className="search-section">
+      <div className="input-container">
+        <input
+          type="text"
+          placeholder="Search by name"
+          className="search-input"
+          value={searchQuery}
+          onChange={onSearchChange}
+        />
+        {searchQuery && (
+          <button className="clear-button" onClick={onClearSearch}>
+            Clear
+          </button>
+        )}
+      </div>
     </div>
   )
 }

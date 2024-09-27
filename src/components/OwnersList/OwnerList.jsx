@@ -4,7 +4,7 @@ import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table'
 import api from '../../services/api'
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css'
 
-function OwnerList() {
+function OwnerList({ searchQuery }) {
   const [owners, setOwners] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -20,6 +20,10 @@ function OwnerList() {
         setLoading(false)
       })
   }, [])
+
+  const filteredOwners = owners.filter((owner) =>
+    owner.name.toLowerCase().includes(searchQuery.toLowerCase())
+  )
 
   if (loading) {
     return <div>Loading...</div>
