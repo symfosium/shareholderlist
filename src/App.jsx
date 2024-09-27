@@ -21,12 +21,22 @@ function App() {
   const [showShareholderForm, setShareholderForm] = useState(false)
   const [showTransactionForm, setShowTransactionForm] = useState(false)
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
+  const [searchQuery, setSearchQuery] = useState('')
 
   const handleTabChange = (tab) => {
     setActiveTab(tab)
     setShareholderForm(false)
     setShowTransactionForm(false)
     setActiveButton('')
+    setSearchQuery('')
+  }
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value)
+  }
+
+  const handleClearSearch = () => {
+    setSearchQuery('')
   }
 
   const handleShowShareholderForm = () => {
@@ -47,7 +57,7 @@ function App() {
     setIsMobile(window.innerWidth <= 768)
   }
 
-  useState(() => {
+  useEffect(() => {
     window.addEventListener('resize', handleResize)
     return () => {
       window.removeEventListener('resize', handleResize)
@@ -63,7 +73,13 @@ function App() {
           onAddShareholderClick={handleShowShareholderForm}
           onAddTransactionClick={handleShowTransactionForm}
         />
-        <SearchSection activeTab={activeTab} isMobile={isMobile} />
+        <SearchSection
+          activeTab={activeTab}
+          isMobile={isMobile}
+          searchQuery={searchQuery}
+          onSearchChange={handleSearchChange}
+          onClearSearch={handleClearSearch}
+        />
         {!isMobile && (
           <NavButtons
             onAddShareholderClick={handleShowShareholderForm}
@@ -77,7 +93,9 @@ function App() {
           <NewTransactionForm />
         ) : (
           <>
-            {activeTab === 'shareholders' && <ShareholderList />}
+            {activeTab === 'shareholders' && (
+              <ShareholderList searchQuery={searchQuery} />
+            )}
             {activeTab === 'owners' && <OwnerList />}
             {activeTab === 'transactions' && <TransactionHistoryTable />}
           </>

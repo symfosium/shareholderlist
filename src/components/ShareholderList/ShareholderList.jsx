@@ -5,7 +5,7 @@ import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table'
 import api from '../../services/api'
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css'
 
-function ShareholderList() {
+function ShareholderList({ searchQuery }) {
   const [shareholders, setShareholders] = useState([])
   const [loading, setLoading] = useState(true)
   const [isModalOpen, setModalOpen] = useState(false)
@@ -45,6 +45,10 @@ function ShareholderList() {
     console.log('Updated Shareholder:', updatedShareholder)
   }
 
+  const filteredShareholders = shareholders.filter((shareholder) =>
+    shareholder.name.toLowerCase().includes(searchQuery.toLowerCase())
+  )
+
   if (loading) {
     console.log('Loading')
     return <div>Loading...</div>
@@ -68,8 +72,8 @@ function ShareholderList() {
           </Tr>
         </Thead>
         <Tbody>
-          {shareholders.length > 0 ? (
-            shareholders.map((shareholder, index) => (
+          {filteredShareholders.length > 0 ? (
+            filteredShareholders.map((shareholder) => (
               <TableRowShareholders
                 key={shareholder.id}
                 shareholder={shareholder}
