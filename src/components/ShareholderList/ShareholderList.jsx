@@ -10,6 +10,8 @@ function ShareholderList({ searchQuery }) {
   const [loading, setLoading] = useState(true)
   const [isModalOpen, setModalOpen] = useState(false)
   const [selectedShareholder, setSelectedShareholder] = useState(null)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [rowsPerPage] = useState(3) // Set to 10 rows per page
 
   useEffect(() => {
     api
@@ -49,8 +51,28 @@ function ShareholderList({ searchQuery }) {
     shareholder.name.toLowerCase().includes(searchQuery.toLowerCase())
   )
 
+  // Pagination Logic
+  const indexOfLastRow = currentPage * rowsPerPage
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage
+  const currentRows = filteredShareholders.slice(indexOfFirstRow, indexOfLastRow)
+
+  const totalPages = Math.ceil(filteredShareholders.length / rowsPerPage)
+
+  // Handle next page
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prevPage) => prevPage + 1)
+    }
+  }
+
+  // Handle previous page
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1)
+    }
+  }
+
   if (loading) {
-    console.log('Loading')
     return <div>Loading...</div>
   }
 
@@ -72,8 +94,8 @@ function ShareholderList({ searchQuery }) {
           </Tr>
         </Thead>
         <Tbody>
-          {filteredShareholders.length > 0 ? (
-            filteredShareholders.map((shareholder) => (
+          {currentRows.length > 0 ? (
+            currentRows.map((shareholder) => (
               <TableRowShareholders
                 key={shareholder.id}
                 shareholder={shareholder}
@@ -87,10 +109,33 @@ function ShareholderList({ searchQuery }) {
           )}
         </Tbody>
       </Table>
+  
+      {/* Pagination Controls */}
+      <div className="pagination">
+        <button
+          onClick={handlePreviousPage}
+          disabled={currentPage === 1}
+          className="pagination-arrow"
+        >
+          &lt; {/* Left Arrow */}
+        </button>
 
+        {/* Show the range of rows currently being displayed */}
+        <span className="pagination-info">
+          {indexOfFirstRow + 1}-{Math.min(indexOfLastRow, filteredShareholders.length)} of {filteredShareholders.length}
+        </span>
+
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          className="pagination-arrow"
+        >
+          &gt; {/* Right Arrow */}
+        </button>
+      </div>
+  
       {isModalOpen && selectedShareholder && (
         <>
-          {console.log('Modal is being rendered')}
           <EditShareholderModal
             shareholder={selectedShareholder}
             onClose={handleModalClose}
