@@ -4,7 +4,7 @@ import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table'
 import api from '../../services/api'
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css'
 
-const TransactionHistoryTable = () => {
+const TransactionHistoryTable = ({ searchQuery = '' }) => {
   const [transactions, setTransactions] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -22,6 +22,13 @@ const TransactionHistoryTable = () => {
         setLoading(false)
       })
   }, [])
+
+  const filteredTransactions = transactions.filter((transaction) => {
+    return (
+      transaction.seller?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      transaction.buyer?.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+  })
 
   if (loading) {
     return <div>Loading...</div>
@@ -49,8 +56,8 @@ const TransactionHistoryTable = () => {
           </Tr>
         </Thead>
         <Tbody>
-          {transactions.length > 0 ? (
-            transactions.map((transaction) => (
+          {filteredTransactions.length > 0 ? (
+            filteredTransactions.map((transaction) => (
               <TableRowTransaction
                 key={transaction.id}
                 seller={transaction.seller}
