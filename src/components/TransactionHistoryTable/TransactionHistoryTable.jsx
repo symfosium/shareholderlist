@@ -1,64 +1,64 @@
-import React, { useEffect, useState } from 'react';
-import TableRowTransaction from './TableRowTransaction';
-import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
-import api from '../../services/api';
-import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
+import React, { useEffect, useState } from 'react'
+import TableRowTransaction from './TableRowTransaction'
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table'
+import api from '../../services/api'
+import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css'
 
 const TransactionHistoryTable = ({ searchQuery = '' }) => {
-  const [transactions, setTransactions] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage] = useState(10); // Set to 10 rows per page
+  const [transactions, setTransactions] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [rowsPerPage] = useState(10) // Set to 10 rows per page
 
   useEffect(() => {
     api
       .get('/transactionHistory/all')
       .then((response) => {
-        setTransactions(response.data);
-        setLoading(false);
+        setTransactions(response.data)
+        setLoading(false)
       })
       .catch((e) => {
-        console.error('Error loading transaction history: ', e);
-        setError('Failed to load transaction history');
-        setLoading(false);
-      });
-  }, []);
+        console.error('Error loading transaction history: ', e)
+        setError('Failed to load transaction history')
+        setLoading(false)
+      })
+  }, [])
 
   const filteredTransactions = transactions.filter((transaction) => {
     return (
       transaction.seller?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       transaction.buyer?.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  });
+    )
+  })
 
   // Pagination Logic
-  const indexOfLastRow = currentPage * rowsPerPage;
-  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-  const currentRows = filteredTransactions.slice(indexOfFirstRow, indexOfLastRow);
+  const indexOfLastRow = currentPage * rowsPerPage
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage
+  const currentRows = filteredTransactions.slice(indexOfFirstRow, indexOfLastRow)
 
-  const totalPages = Math.ceil(filteredTransactions.length / rowsPerPage);
+  const totalPages = Math.ceil(filteredTransactions.length / rowsPerPage)
 
   // Handle next page
   const handleNextPage = () => {
     if (currentPage < totalPages) {
-      setCurrentPage((prevPage) => prevPage + 1);
+      setCurrentPage((prevPage) => prevPage + 1)
     }
-  };
+  }
 
   // Handle previous page
   const handlePreviousPage = () => {
     if (currentPage > 1) {
-      setCurrentPage((prevPage) => prevPage - 1);
+      setCurrentPage((prevPage) => prevPage - 1)
     }
-  };
+  }
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <div>{error}</div>
   }
 
   return (
