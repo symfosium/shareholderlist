@@ -11,7 +11,7 @@ function ShareholderList({ searchQuery }) {
   const [isModalOpen, setModalOpen] = useState(false)
   const [selectedShareholder, setSelectedShareholder] = useState(null)
   const [currentPage, setCurrentPage] = useState(1)
-  const [rowsPerPage] = useState(3) // Set to 10 rows per page
+  const [rowsPerPage] = useState(10) // Set to 10 rows per page
 
   useEffect(() => {
     api

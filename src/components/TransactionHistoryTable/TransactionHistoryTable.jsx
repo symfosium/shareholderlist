@@ -66,7 +66,7 @@ const TransactionHistoryTable = () => {
             ))
           ) : (
             <Tr>
-              <Td colSpan="10">No transaction available</Td>
+              <Td colspan="10">No transaction available</Td>
             </Tr>
           )}
         </Tbody>
