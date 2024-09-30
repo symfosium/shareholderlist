@@ -97,7 +97,9 @@ function App() {
               <ShareholderList searchQuery={searchQuery} />
             )}
             {activeTab === 'owners' && <OwnerList searchQuery={searchQuery} />}
-            {activeTab === 'transactions' && <TransactionHistoryTable />}
+            {activeTab === 'transactions' && (
+              <TransactionHistoryTable searchQuery={searchQuery} />
+            )}
           </>
         )}
         <ToastContainer />
