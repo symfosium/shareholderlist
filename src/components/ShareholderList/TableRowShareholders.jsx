@@ -8,6 +8,7 @@ function TableRowShareholders({ shareholder, onEditClick }) {
       <Td>{shareholder.encryptedSsn}</Td>
       <Td>{shareholder.email}</Td>
       <Td>{shareholder.address}</Td>
+      <Td>{shareholder.sharePercentage}</Td>
       <Td>
         <button onClick={onEditClick}>Edit</button>
       </Td>

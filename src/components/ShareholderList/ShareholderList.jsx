@@ -90,6 +90,7 @@ function ShareholderList({ searchQuery }) {
             <Th>SSN</Th>
             <Th>Email</Th>
             <Th>Address</Th>
+            <Th>Share percentage</Th>
             <Th>Action</Th>
           </Tr>
         </Thead>
@@ -104,7 +105,7 @@ function ShareholderList({ searchQuery }) {
             ))
           ) : (
             <Tr>
-              <Td colSpan="5">No Shareholders Data Available</Td>
+              <Td colSpan="6">No Shareholders Data Available</Td>
             </Tr>
           )}
         </Tbody>
