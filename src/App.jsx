@@ -79,6 +79,7 @@ function App() {
           searchQuery={searchQuery}
           onSearchChange={handleSearchChange}
           onClearSearch={handleClearSearch}
+          hideInput={showShareholderForm || showTransactionForm}
         />
         {!isMobile && (
           <NavButtons
