@@ -17,16 +17,29 @@ const ShareholderForm = () => {
     setFormData({ ...formData, [name]: value })
   }
 
-  // Helper function to validate email
   const validateEmail = (email) => {
     const emailRegex = /\S+@\S+\.\S+/
     return emailRegex.test(email)
   }
 
-  const handleSubmit = (e) => {
+  const checkEmailExists = async (email) => {
+    try {
+      const response = await api.get(`/shareholder/check-email/${encodeURIComponent(email)}`)
+      return response.data.exists
+    } catch (error) {
+      console.error('Error checking email:', error)
+      toast.error('Error checking email!', {
+        theme: 'dark',
+        position: 'bottom-right',
+        autoClose: 4000,
+      })
+      return false
+    }
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
-    // Check for empty fields
     if (!formData.name) {
       toast.error('Name field is required!', {
         theme: 'dark',
@@ -43,6 +56,17 @@ const ShareholderForm = () => {
       })
       return
     }
+
+    const emailExists = await checkEmailExists(formData.email)
+    if (emailExists) {
+      toast.error('This email already exists!', {
+        theme: 'dark',
+        position: 'bottom-right',
+        autoClose: 4000,
+      })
+      return
+    }
+
     if (!formData.email) {
       toast.error('Email field is required!', {
         theme: 'dark',
@@ -76,38 +100,34 @@ const ShareholderForm = () => {
       return
     }
 
-    // Proceed if all validations pass
-    console.log(formData)
-    api
-      .post('/shareholder/add', formData)
-      .then((response) => {
-        console.log('Shareholder added: ', response.data)
-        toast.success('Shareholder added successfully!', {
-          theme: 'dark',
-          position: 'bottom-right',
-          autoClose: 4000,
-        })
-        setFormData({
-          name: '',
-          encryptedSsn: '',
-          email: '',
-          address: '',
-          shares: '',
-        })
+    try {
+      const response = await api.post('/shareholder/add', formData)
+      console.log('Shareholder added:', response.data)
+      toast.success('Shareholder added successfully!', {
+        theme: 'dark',
+        position: 'bottom-right',
+        autoClose: 4000,
       })
-      .catch((e) => {
-        console.error('Error adding shareholder', e)
-        toast.error('Error adding shareholder!', {
-          theme: 'dark',
-          position: 'bottom-right',
-          autoClose: 4000,
-        })
+      setFormData({
+        name: '',
+        encryptedSsn: '',
+        email: '',
+        address: '',
+        shares: '',
       })
+    } catch (error) {
+      console.error('Error adding shareholder:', error)
+      toast.error('Error adding shareholder!', {
+        theme: 'dark',
+        position: 'bottom-right',
+        autoClose: 4000,
+      })
+    }
   }
 
   return (
     <div className={styles.formContainer}>
-      <h1 className={styles.header}>New shareholder's information</h1>
+      <h1 className={styles.header}>New Shareholder's Information</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.formGroup}>
           <label>Name:</label>
@@ -120,7 +140,7 @@ const ShareholderForm = () => {
           />
         </div>
         <div className={styles.formGroup}>
-          <label>Social security number:</label>
+          <label>Social Security Number:</label>
           <input
             type="text"
             name="encryptedSsn"
@@ -132,7 +152,7 @@ const ShareholderForm = () => {
         <div className={styles.formGroup}>
           <label>Email:</label>
           <input
-            type="text" // Changed from type="email" to type="text"
+            type="email"
             name="email"
             className={styles.inputField}
             value={formData.email}
