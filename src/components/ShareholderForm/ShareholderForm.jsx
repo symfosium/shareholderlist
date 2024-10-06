@@ -9,7 +9,7 @@ const ShareholderForm = () => {
     encryptedSsn: '',
     email: '',
     address: '',
-    shares: '',
+    shareQty: '',
   })
 
   const handleInputChange = (e) => {
@@ -24,7 +24,9 @@ const ShareholderForm = () => {
 
   const checkEmailExists = async (email) => {
     try {
-      const response = await api.get(`/shareholder/check-email/${encodeURIComponent(email)}`)
+      const response = await api.get(
+        `/shareholder/check-email/${encodeURIComponent(email)}`
+      )
       return response.data.exists
     } catch (error) {
       console.error('Error checking email:', error)
@@ -91,7 +93,7 @@ const ShareholderForm = () => {
       })
       return
     }
-    if (!formData.shares) {
+    if (!formData.shareQty) {
       toast.error('Number of shares field is required!', {
         theme: 'dark',
         position: 'bottom-right',
@@ -113,7 +115,7 @@ const ShareholderForm = () => {
         encryptedSsn: '',
         email: '',
         address: '',
-        shares: '',
+        shareQty: '',
       })
     } catch (error) {
       console.error('Error adding shareholder:', error)
@@ -173,9 +175,9 @@ const ShareholderForm = () => {
           <label>Number of Shares:</label>
           <input
             type="number"
-            name="shares"
+            name="shareQty"
             className={styles.inputField}
-            value={formData.shares}
+            value={formData.shareQty}
             onChange={handleInputChange}
           />
         </div>
