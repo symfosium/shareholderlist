@@ -90,7 +90,7 @@ function ShareholderList({ searchQuery }) {
             <Th>SSN</Th>
             <Th>Email</Th>
             <Th>Address</Th>
-            <Th>Share percentage</Th>
+            <Th>Number of shares</Th>
             <Th>Action</Th>
           </Tr>
         </Thead>
@@ -110,7 +110,7 @@ function ShareholderList({ searchQuery }) {
           )}
         </Tbody>
       </Table>
-  
+
       {/* Pagination Controls */}
       <div className="pagination">
         <button
@@ -123,7 +123,9 @@ function ShareholderList({ searchQuery }) {
 
         {/* Show the range of rows currently being displayed */}
         <span className="pagination-info">
-          {indexOfFirstRow + 1}-{Math.min(indexOfLastRow, filteredShareholders.length)} of {filteredShareholders.length}
+          {indexOfFirstRow + 1}-
+          {Math.min(indexOfLastRow, filteredShareholders.length)} of{' '}
+          {filteredShareholders.length}
         </span>
 
         <button
@@ -134,7 +136,7 @@ function ShareholderList({ searchQuery }) {
           &gt; {/* Right Arrow */}
         </button>
       </div>
-  
+
       {isModalOpen && selectedShareholder && (
         <>
           <EditShareholderModal

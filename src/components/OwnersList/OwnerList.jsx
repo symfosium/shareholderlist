@@ -46,7 +46,7 @@ function OwnerList({ searchQuery = '' }) {
               <TableRowOwners
                 key={owner.id}
                 name={owner.name}
-                numberOfShares={owner.numberOfShares}
+                numberOfShares={owner.shareQty}
                 sharePercentage={owner.sharePercentage}
               />
             ))
