@@ -24,7 +24,9 @@ const ShareholderForm = () => {
 
   const checkEmailExists = async (email) => {
     try {
-      const response = await api.get(`/shareholder/check-email/${encodeURIComponent(email)}`)
+      const response = await api.get(
+        `/shareholder/check-email/${encodeURIComponent(email)}`
+      )
       return response.data.exists
     } catch (error) {
       console.error('Error checking email:', error)
@@ -85,7 +87,6 @@ const ShareholderForm = () => {
       })
       return
     }
-
     if (!formData.shareQty) {
       toast.error('Number of shares field is required!', {
         theme: 'dark',
@@ -188,7 +189,6 @@ const ShareholderForm = () => {
           <label htmlFor="shareQty">Number of Shares:</label>
           <input
             type="number"
-            id="shareQty"
             name="shareQty"
             className={styles.inputField}
             value={formData.shareQty}
