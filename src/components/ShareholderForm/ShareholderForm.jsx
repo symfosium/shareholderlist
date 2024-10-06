@@ -9,7 +9,7 @@ const ShareholderForm = () => {
     encryptedSsn: '',
     email: '',
     address: '',
-    shares: '',
+    shareQty: '',
   })
 
   const handleInputChange = (e) => {
@@ -40,6 +40,7 @@ const ShareholderForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    // Validation checks
     if (!formData.name) {
       toast.error('Name field is required!', {
         theme: 'dark',
@@ -48,18 +49,9 @@ const ShareholderForm = () => {
       })
       return
     }
-    if (!formData.encryptedSsn) {
-      toast.error('Social security number field is required!', {
-        theme: 'dark',
-        position: 'bottom-right',
-        autoClose: 4000,
-      })
-      return
-    }
 
-    const emailExists = await checkEmailExists(formData.email)
-    if (emailExists) {
-      toast.error('This email already exists!', {
+    if (!formData.encryptedSsn) {
+      toast.error('Social Security Number field is required!', {
         theme: 'dark',
         position: 'bottom-right',
         autoClose: 4000,
@@ -75,6 +67,7 @@ const ShareholderForm = () => {
       })
       return
     }
+
     if (!validateEmail(formData.email)) {
       toast.error('Invalid email address!', {
         theme: 'dark',
@@ -83,6 +76,7 @@ const ShareholderForm = () => {
       })
       return
     }
+
     if (!formData.address) {
       toast.error('Address field is required!', {
         theme: 'dark',
@@ -91,7 +85,8 @@ const ShareholderForm = () => {
       })
       return
     }
-    if (!formData.shares) {
+
+    if (!formData.shareQty) {
       toast.error('Number of shares field is required!', {
         theme: 'dark',
         position: 'bottom-right',
@@ -100,6 +95,18 @@ const ShareholderForm = () => {
       return
     }
 
+    // Check if the email already exists
+    const emailExists = await checkEmailExists(formData.email)
+    if (emailExists) {
+      toast.error('This email already exists!', {
+        theme: 'dark',
+        position: 'bottom-right',
+        autoClose: 4000,
+      })
+      return
+    }
+
+    // Attempt to add the shareholder
     try {
       const response = await api.post('/shareholder/add', formData)
       console.log('Shareholder added:', response.data)
@@ -113,7 +120,7 @@ const ShareholderForm = () => {
         encryptedSsn: '',
         email: '',
         address: '',
-        shares: '',
+        shareQty: '',
       })
     } catch (error) {
       console.error('Error adding shareholder:', error)
@@ -130,53 +137,63 @@ const ShareholderForm = () => {
       <h1 className={styles.header}>New Shareholder's Information</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.formGroup}>
-          <label>Name:</label>
+          <label htmlFor="name">Name:</label>
           <input
             type="text"
+            id="name"
             name="name"
             className={styles.inputField}
             value={formData.name}
             onChange={handleInputChange}
+            required // Added required attribute
           />
         </div>
         <div className={styles.formGroup}>
-          <label>Social Security Number:</label>
+          <label htmlFor="encryptedSsn">Social Security Number:</label>
           <input
             type="text"
+            id="encryptedSsn"
             name="encryptedSsn"
             className={styles.inputField}
             value={formData.encryptedSsn}
             onChange={handleInputChange}
+            required // Added required attribute
           />
         </div>
         <div className={styles.formGroup}>
-          <label>Email:</label>
+          <label htmlFor="email">Email:</label>
           <input
             type="email"
+            id="email"
             name="email"
             className={styles.inputField}
             value={formData.email}
             onChange={handleInputChange}
+            required // Added required attribute
           />
         </div>
         <div className={styles.formGroup}>
-          <label>Address:</label>
+          <label htmlFor="address">Address:</label>
           <input
             type="text"
+            id="address"
             name="address"
             className={styles.inputField}
             value={formData.address}
             onChange={handleInputChange}
+            required // Added required attribute
           />
         </div>
         <div className={styles.formGroup}>
-          <label>Number of Shares:</label>
+          <label htmlFor="shareQty">Number of Shares:</label>
           <input
             type="number"
-            name="shares"
+            id="shareQty"
+            name="shareQty"
             className={styles.inputField}
-            value={formData.shares}
+            value={formData.shareQty}
             onChange={handleInputChange}
+            required // Added required attribute
           />
         </div>
         <button type="submit" className={styles.submitButton}>
