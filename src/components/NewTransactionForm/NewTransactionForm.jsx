@@ -1,138 +1,138 @@
-import React, { useState } from 'react'
-import styles from './NewTransactionForm.module.css'
-import api from '../../services/api'
-import { toast } from 'react-toastify'
+import React, { useState, useEffect } from "react";
+import styles from "./NewTransactionForm.module.css";
+import api from "../../services/api";
+import { toast } from "react-toastify";
 
 const NewTransactionForm = () => {
   const [formData, setFormData] = useState({
-    buyer: '',
-    seller: '',
-    dateOfPurchase: '',
-    shareQty: '',
-    price: '',
+    buyer: "",
+    buyerId: "",
+    seller: "",
+    sellerId: "",
+    dateOfPurchase: "",
+    shareQty: "",
+    price: "",
     taxReported: true,
-    shareNumberFrom: '',
-    shareNumberTo: '',
-    note: '',
-  })
+    shareNumberFrom: "",
+    shareNumberTo: "",
+    note: "",
+  });
+  const [persons, setPersons] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [personType, setPersonType] = useState("");
+  const [selectedButton, setSelectedButton] = useState("");
+
+  useEffect(() => {
+    fetchPersons();
+  }, []);
+
+  const fetchPersons = async () => {
+    try {
+      const [ownersResponse, shareholdersResponse] = await Promise.all([
+        api.get("/owner/all"),
+        api.get("/shareholder/all"),
+      ]);
+
+      const combinedPersons = [
+        ...ownersResponse.data.map((owner) => ({ ...owner, type: "Owner" })),
+        ...shareholdersResponse.data.map((shareholder) => ({
+          ...shareholder,
+          type: "Shareholder",
+        })),
+      ];
+
+      const uniquePersons = [];
+      const seenNames = new Set();
+
+      combinedPersons.forEach((person) => {
+        if (!seenNames.has(person.name)) {
+          seenNames.add(person.name);
+          uniquePersons.push(person);
+        }
+      });
+
+      setPersons(uniquePersons);
+    } catch (error) {
+      console.error("Error fetching persons:", error);
+    }
+  };
+
+  const handlePersonSelect = (person) => {
+    setFormData({
+      ...formData,
+      [personType]: person.name,
+      [`${personType}Id`]: person.id,
+      [`${personType}Type`]: person.type,
+    });
+    setShowModal(false);
+  };
+
+  const openModal = (type) => {
+    setPersonType(type);
+    setShowModal(true);
+    setSelectedButton(type);
+  };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
-    })
-  }
+    });
+  };
 
   const handleTaxChange = (e) => {
-    const value = e.target.value === 'yes' ? true : false
+    const value = e.target.value === "yes" ? true : false;
     setFormData({
       ...formData,
       taxReported: value,
-    })
-  }
+    });
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    // Check for empty fields
-    if (!formData.buyer) {
-      toast.error('Buyer field is required!', {
-        theme: 'dark',
-        position: 'bottom-right',
-        autoClose: 4000,
-      })
-      return
-    }
-    if (!formData.seller) {
-      toast.error('Seller field is required!', {
-        theme: 'dark',
-        position: 'bottom-right',
-        autoClose: 4000,
-      })
-      return
-    }
-    if (!formData.dateOfPurchase) {
-      toast.error('Date of purchase is required!', {
-        theme: 'dark',
-        position: 'bottom-right',
-        autoClose: 4000,
-      })
-      return
-    }
-    if (!formData.shareQty) {
-      toast.error('Shares quantity is required!', {
-        theme: 'dark',
-        position: 'bottom-right',
-        autoClose: 4000,
-      })
-      return
-    }
-    if (!formData.price) {
-      toast.error('Price is required!', {
-        theme: 'dark',
-        position: 'bottom-right',
-        autoClose: 4000,
-      })
-      return
-    }
-    if (!formData.shareNumberFrom) {
-      toast.error('Share number from is required!', {
-        theme: 'dark',
-        position: 'bottom-right',
-        autoClose: 4000,
-      })
-      return
-    }
-    if (!formData.shareNumberTo) {
-      toast.error('Share number to is required!', {
-        theme: 'dark',
-        position: 'bottom-right',
-        autoClose: 4000,
-      })
-      return
-    }
+    console.log("Payload being sent: ", formData);
 
-    // Proceed with the API call if all validations pass
     const payload = {
       ...formData,
-      taxReported: formData.taxReported,
-      dateOfPurchase: formData.dateOfPurchase,
-      shareQty: formData.shareQty,
-      shareNumberFrom: formData.shareNumberFrom,
-      shareNumberTo: formData.shareNumberTo,
-    }
+      buyerId: Number(formData.buyerId),
+      sellerId: Number(formData.sellerId),
+      price: Number(formData.price),
+      shareQty: Number(formData.shareQty),
+      shareNumberFrom: Number(formData.shareNumberFrom),
+      shareNumberTo: Number(formData.shareNumberTo),
+    };
 
     api
-      .post('/transactionHistory/add', payload)
+      .post("/transactionHistory/add", payload)
       .then((response) => {
-        console.log('Transaction added: ', response.data)
-        toast.success('Transaction added successfully!', {
-          theme: 'dark',
-          position: 'bottom-right',
+        toast.success("Transaction added successfully!", {
+          theme: "dark",
+          position: "bottom-right",
           autoClose: 4000,
-        })
+        });
         setFormData({
-          buyer: '',
-          seller: '',
-          dateOfPurchase: '',
-          shareQty: '',
-          price: '',
+          buyer: "",
+          seller: "",
+          dateOfPurchase: "",
+          shareQty: "",
+          price: "",
           taxReported: true,
-          shareNumberFrom: '',
-          shareNumberTo: '',
-          note: '',
-        })
+          shareNumberFrom: "",
+          shareNumberTo: "",
+          note: "",
+        });
       })
       .catch((e) => {
-        console.error('Error adding transaction', e)
-        toast.error('Error adding transaction!', {
-          theme: 'dark',
-          position: 'bottom-right',
+        console.error("Error adding transaction", e);
+        toast.error("Error adding transaction!", {
+          theme: "dark",
+          position: "bottom-right",
           autoClose: 4000,
-        })
-      })
-  }
+        });
+      });
+  };
 
   return (
     <div className={styles.formContainer}>
@@ -145,9 +145,19 @@ const NewTransactionForm = () => {
             name="buyer"
             className={styles.inputField}
             value={formData.buyer}
-            onChange={handleInputChange}
+            readOnly
           />
+          <button
+            type="button"
+            onClick={() => openModal("buyer")}
+            className={`${styles.selectButton} ${
+              selectedButton === "buyer" ? styles.selected : ""
+            }`}
+          >
+            Select Buyer
+          </button>
         </div>
+
         <div className={styles.formGroup}>
           <label>Seller:</label>
           <input
@@ -155,9 +165,19 @@ const NewTransactionForm = () => {
             name="seller"
             className={styles.inputField}
             value={formData.seller}
-            onChange={handleInputChange}
+            readOnly
           />
+          <button
+            type="button"
+            onClick={() => openModal("seller")}
+            className={`${styles.selectButton} ${
+              selectedButton === "seller" ? styles.selected : ""
+            }`}
+          >
+            Select Seller
+          </button>
         </div>
+
         <div className={styles.formGroup}>
           <label>Date of Purchase:</label>
           <input
@@ -193,7 +213,7 @@ const NewTransactionForm = () => {
           <select
             name="withholdingTax"
             className={styles.inputField}
-            value={formData.taxReported ? 'yes' : 'no'}
+            value={formData.taxReported ? "yes" : "no"}
             onChange={handleTaxChange}
           >
             <option value="yes">Yes</option>
@@ -235,8 +255,28 @@ const NewTransactionForm = () => {
           Add new transaction
         </button>
       </form>
-    </div>
-  )
-}
 
-export default NewTransactionForm
+      {showModal && (
+        <div className={styles.modal}>
+          <div className={styles.modalContent}>
+            <h3>Select {personType === "buyer" ? "Buyer" : "Seller"}</h3>
+            <ul>
+              {persons.map((person, index) => (
+                <li
+                  key={`${person.name}-${index}`}
+                  onClick={() => handlePersonSelect(person)}
+                >
+                  {person.name} ({person.type})
+                </li>
+              ))}
+            </ul>
+
+            <button onClick={() => setShowModal(false)}>Close</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default NewTransactionForm;
